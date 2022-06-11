@@ -1,0 +1,33 @@
+{
+  	"name": "AntiCheat",
+  	"tree": {
+		"$className": "DataModel",
+
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+		
+	 	 	"AntiCheat": {
+				"$className": "Folder",
+				"$path": "Source",
+
+				"AntiCheatActor": {
+					"$className": "Actor",
+					"$path": "Runtime"
+				},
+
+				"Submodules": {
+					"$className": "Folder",
+					"InfinityECS": {
+						"$path": "Submodules/InfinityECS/source"
+					},
+					"LuaModules": {
+						"$path": "Submodules/LuaModules/sources"
+					},
+					"RbxModules": {
+						"$path": "Submodules/RbxModules/sources"
+					}
+				}
+	  		}
+		}
+  	}
+}

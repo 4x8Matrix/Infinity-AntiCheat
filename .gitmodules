@@ -1,0 +1,9 @@
+[submodule "Submodules/InfinityECS"]
+	path = Submodules/InfinityECS
+	url = https://github.com/4x8Matrix/InfinityECS
+[submodule "Submodules/LuaModules"]
+	path = Submodules/LuaModules
+	url = https://github.com/4x8Matrix/LuaModules
+[submodule "Submodules/RbxModules"]
+	path = Submodules/RbxModules
+	url = https://github.com/4x8Matrix/RbxModules

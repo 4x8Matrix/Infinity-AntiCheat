@@ -26,7 +26,6 @@ InfinityECS.IsParallelEnabled = task.desynchronize ~= nil
 
 -- // Init
 InfinityECS.FileSystem.LoadChildren(AntiCheatFolder.Modules.Services, InfinityECS, InfinityECS)
-InfinityECS.FileSystem.LoadChildrenInto(AntiCheatFolder.Modules.Entities, InfinityECS, InfinityECS)
 InfinityECS.FileSystem.LoadChildrenInto(AntiCheatFolder.Modules.Systems, InfinityECS, InfinityECS)
 
 -- // Patch
@@ -38,5 +37,15 @@ if InfinityECS.IsParallelEnabled then
 end
 
 -- // Post Init
+local EnumService = InfinityECS:GetService("Enums")
+local ConsoleService = InfinityECS:GetService("Console")
+local VersionService = InfinityECS:GetService("Version")
+
+if not VersionService.Validate() then
+	ConsoleService.Warn("Update Available")
+end
+
+InfinityECS.Performance = EnumService.Performance.Normal
+
 InfinityECS.World:Push("OnInitialise")
 InfinityECS.World:Push("OnInitialised")

@@ -39,5 +39,5 @@ return function(InfinityECS)
 		return AccountValidationService.Cache[Player.UserId]
 	end
 
-	InfinityECS.FileSystem:LoadChildrenInto(script.Modules, AccountValidationService.Modules, InfinityECS)
+	InfinityECS.FileSystem.LoadChildrenInto(script.Modules, AccountValidationService.Modules, InfinityECS)
 end

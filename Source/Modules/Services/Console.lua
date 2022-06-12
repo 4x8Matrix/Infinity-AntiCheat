@@ -6,6 +6,9 @@
 ]]--
 
 return function(InfinityECS)
+	-- // Services
+	local SettingsService = InfinityECS:GetService("Settings", true)
+
 	-- // Variables
 	local ConsoleService = InfinityECS.Service.new({ Name = script.Name, Logs = {} })
 	local ConsoleMap = {
@@ -46,10 +49,8 @@ return function(InfinityECS)
 	-- // Function Builder
 	for Callback, CallbackData in ConsoleMap do
 		ConsoleService[Callback] = function(...)
-			local SettingsService = InfinityECS:GetService("Settings")
-
 			local Message = table.concat({ ... }, " ")
-			local Source = debug.info("s", 2)
+			local Source = debug.info(2, "s")
 
 			local TaggedMessage = string.format("[%s][%s]: %s", Source, Callback, Message)
 
@@ -60,7 +61,7 @@ return function(InfinityECS)
 			})
 
 			ConsoleService.OnNewMessageReceived:Fire(ConsoleService.Logs[#ConsoleService.Logs])
-			if SettingsService.Debug.Active then
+			if SettingsService.DebugMode then
 				CallbackData.Callback(TaggedMessage, table.unpack(CallbackData.Args))
 			end
 		end

@@ -4,7 +4,7 @@
 
 return function(InfinityECS)
 	local Players = InfinityECS:GetService("Players")
-	local MarketplaceService = InfinityECS:GetService("MarketplaceServices")
+	local MarketplaceService = InfinityECS:GetService("MarketplaceService")
 
 	local function WrapCall(Call, ...)
 		local Success, Result

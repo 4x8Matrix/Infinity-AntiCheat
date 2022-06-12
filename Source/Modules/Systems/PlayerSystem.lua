@@ -16,7 +16,12 @@ return function(InfinityECS)
 			InfinityECS.ComponentBuilder.new({
 				State = true,
 				Player = Player,
-				UserId = Player.UserId
+				UserId = Player.UserId,
+
+				__Janitors = {
+					Global = {},
+					Character = {}
+				}
 			}):Build(), Player.ClassName
 		)
 
@@ -30,14 +35,22 @@ return function(InfinityECS)
 		end):GetResult()[1]
 
 		if PlayerEntity then
+			for _, JanitorList in PlayerEntity.__Janitors:Iter() do
+				for _, Janitor in JanitorList do
+					Janitor:Clean()
+				end
+			end
+
 			InfinityECS.World:Push("OnPlayerRemoving", PlayerEntity)
 			InfinityECS.World:RemoveEntities(PlayerEntity)
 		end
 	end
 
-	-- // Binds
-	InfinityECS.World:AddSystem(PlayerSystem)
+	function PlayerSystem.OnInitialised()
+		Connections:BindToPlayerAdded(PlayerSystem.InitPlayer)
+		Connections:BindToPlayerRemoving(PlayerSystem.RemovePlayer)
+	end
 
-	Connections:BindToPlayerAdded(PlayerSystem.InitPlayer)
-	Connections:BindToPlayerRemoving(PlayerSystem.RemovePlayer)
+	-- // Binds
+	InfinityECS.World:AddSystems(PlayerSystem)
 end

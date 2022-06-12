@@ -21,7 +21,7 @@ return function(InfinityECS)
 	end
 	
 	-- // Functions
-	function ActionService.TakeAction(Player)
-		
+	function ActionService.TakeAction(Player, ActionData)
+		print(Player, ActionData)
 	end
 end

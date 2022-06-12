@@ -13,6 +13,7 @@ return function(InfinityECS)
 
 	function PatchService.GetExtentsSize(Model)
 		-- @Credit: Pyseph & XAXA
+		-- @Modified: AsynchronousMatrix
 		
 		local MinX, MinY, MinZ = Infinite, Infinite, Infinite
 		local MaxX, MaxY, MaxZ = NegativeInfinite, NegativeInfinite, NegativeInfinite

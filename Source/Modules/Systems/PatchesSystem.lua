@@ -7,6 +7,6 @@ return function(InfinityECS)
 	local PatchesSystem = InfinityECS.System.new()
 
 	-- // Binds
-	InfinityECS.FileSystem.LoadChildren(script.Parent.Patches)
-	InfinityECS.World:AddSystem(PatchesSystem)
+	InfinityECS.FileSystem.LoadChildren(script.Parent.Patches, InfinityECS)
+	InfinityECS.World:AddSystems(PatchesSystem)
 end

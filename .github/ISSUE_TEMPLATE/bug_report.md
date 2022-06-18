@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: bug
+title: bugfix/
 labels: ''
 assignees: 4x8Matrix
 

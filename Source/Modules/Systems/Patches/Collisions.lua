@@ -27,14 +27,14 @@ return function(InfinityECS)
 	end
 
 	function CollisionGroups.OnInitialised()
-		if not Settings.Patches.CollisionGroups.Enabled then
+		if not Settings.Patches.Collision.Enabled then
 			return
 		end
 
-		PhysicsService:CreateCollisionGroup(Settings.Patches.CollisionGroups.PlayerGroupName)
+		PhysicsService:CreateCollisionGroup(Settings.Patches.Collision.PlayerGroupName)
 		PhysicsService:CollisionGroupSetCollidable(
-			Settings.Patches.CollisionGroups.PlayerGroupName,
-			Settings.Patches.CollisionGroups.PlayerGroupName,
+			Settings.Patches.Collision.PlayerGroupName,
+			Settings.Patches.Collision.PlayerGroupName,
 			false
 		)
 
@@ -44,10 +44,10 @@ return function(InfinityECS)
 			Player.CharacterAdded:Connect(function(Character)
 				CharacterJanitor = InfinityECS.Janitor.new()
 				
-				SetCollisionGroup(Character, Settings.Patches.CollisionGroups.PlayerGroupName)
+				SetCollisionGroup(Character, Settings.Patches.Collision.PlayerGroupName)
 				
 				CharacterJanitor:Give(Character.DescendantAdded:Connect(function(Object)
-					SetCollisionGroup(Object, Settings.Patches.CollisionGroups.PlayerGroupName)
+					SetCollisionGroup(Object, Settings.Patches.Collision.PlayerGroupName)
 				end))
 				
 				CharacterJanitor:Give(Character.DescendantRemoving:Connect(function(Object)

@@ -27,6 +27,10 @@ return function(InfinityECS)
 	end
 
 	function DataStore.GetPlayerInformation(Player)
+		if not SettingsService.DataStore.Enabled then
+			return nil
+		end
+
 		return DataStore.RecursiveCallAsync(function()
 			return DataStore.Store:GetAsync(Player)
 		end, function(Exception)
@@ -37,6 +41,10 @@ return function(InfinityECS)
 	end
 
 	function DataStore.SetPlayerInformation(Player, Data)
+		if not SettingsService.DataStore.Enabled then
+			return nil
+		end
+		
 		DataStore.RecursiveCallAsync(function()
 			return DataStore.Store:SetAsync(Player, Data, { Player.UserId })
 		end, function(Exception)
@@ -47,6 +55,10 @@ return function(InfinityECS)
 	end
 
 	function DataStore.UnitStore()
+		if not SettingsService.DataStore.Enabled then
+			return nil
+		end
+
 		DataStore.RecursiveCallAsync(function(StoreName)
 			DataStore.Store = DataStoreService:GetDataStore(StoreName)
 		end, function(Exception)

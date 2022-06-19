@@ -20,7 +20,7 @@ return function(InfinityECS)
 	end
 
 	function HitboxService.GetPosition(Player)
-		local Root = Character.GetRoot(Player)
+		local Root = Character.RootPart(Player)
 
 		return Root and Root.Position
 	end

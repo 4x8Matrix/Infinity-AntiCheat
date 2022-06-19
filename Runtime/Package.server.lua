@@ -25,7 +25,9 @@ InfinityECS._Settings = require(AntiCheatFolder.Settings)
 InfinityECS.IsParallelEnabled = task.desynchronize ~= nil
 
 -- // Init
-InfinityECS.FileSystem.LoadChildren(AntiCheatFolder.Modules.Services, InfinityECS, InfinityECS)
+InfinityECS.Services = {}
+
+InfinityECS.FileSystem.LoadChildren(AntiCheatFolder.Modules.Services, InfinityECS)
 InfinityECS.FileSystem.LoadChildrenInto(AntiCheatFolder.Modules.Systems, InfinityECS, InfinityECS)
 
 -- // Patch
@@ -37,9 +39,9 @@ if InfinityECS.IsParallelEnabled then
 end
 
 -- // Post Init
-local EnumService = InfinityECS:GetService("Enums")
-local ConsoleService = InfinityECS:GetService("Console")
-local VersionService = InfinityECS:GetService("Version")
+local EnumService = InfinityECS:GetService("Enums", true)
+local ConsoleService = InfinityECS:GetService("Console", true)
+local VersionService = InfinityECS:GetService("Version", true)
 
 if not VersionService.Validate() then
 	ConsoleService.Warn("Update Available")

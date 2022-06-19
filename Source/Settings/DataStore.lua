@@ -1,4 +1,5 @@
 return {
+	Enabled = false,
 	DataStore = "Infinity-AntiCheat",
 	RecoveryTime = 5,
 

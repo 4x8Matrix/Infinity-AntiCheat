@@ -5,8 +5,8 @@
 return function(InfinityECS)
 	-- // Services
 	local DataStore = InfinityECS:GetService("DataStore", true)
-	local Connections = InfinityECS:GetService("Connections")
-	local Action = InfinityECS:GetService("Action")
+	local Connections = InfinityECS:GetService("Connections", true)
+	local Action = InfinityECS:GetService("Action", true)
 
 	-- // Variables
 	local PlayerSystem = InfinityECS.System.new()
@@ -21,8 +21,11 @@ return function(InfinityECS)
 				UserId = Player.UserId,
 
 				ToolCount = 0,
+				Locked = false,
+				Timeout = false,
+				Idled = false,
 
-				__Connections = {},
+				Connections = {},
 				Janitors = {
 					Global = {},
 					Character = {}
@@ -33,7 +36,7 @@ return function(InfinityECS)
 
 	function PlayerSystem.InitEvents(PlayerEntity)
 		local Player = PlayerEntity.Player:Get()
-		local PlayerConnections = PlayerEntity.__Connections:Get()
+		local PlayerConnections = PlayerEntity.Connections:Get()
 
 		table.insert(PlayerConnections, Player.CharacterRemoving:Connect(function()
 			local Janitors = PlayerEntity.Janitors:Get()
@@ -95,7 +98,7 @@ return function(InfinityECS)
 				end
 			end
 
-			for _, Connection in PlayerEntity.__Connections:Iter() do
+			for _, Connection in PlayerEntity.Connections:Iter() do
 				Connection:Disconnect()
 			end
 

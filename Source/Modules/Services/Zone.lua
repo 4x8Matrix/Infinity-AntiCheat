@@ -13,8 +13,8 @@ return function(InfinityECS)
 	local ZoneService = InfinityECS.Service.new({ Name = script.Name })
 	ZoneService.VoidVector = Vector3.new(0, 0, 0)
 
-	function ZoneService.Validate(Player)
-		local Objects = ZoneService.GetInstanceClassInRadius(Player)
+	function ZoneService.Validate(Player, Position)
+		local Objects = ZoneService.GetInstanceClassInRadius(Player, nil, Position)
 
 		for _, Object in Objects do
 			if Object.AssemblyLinearVelocity ~= ZoneService.VoidVector then
@@ -22,10 +22,6 @@ return function(InfinityECS)
 			end
 
 			if Object.AssemblyAngularVelocity ~= ZoneService.VoidVector then
-				return true
-			end
-
-			if table.find(Settings.Physics.PhysicsComponents, Object.ClassName) then
 				return true
 			end
 
@@ -39,11 +35,11 @@ return function(InfinityECS)
 		end
 	end
 
-	function ZoneService.GetInstanceClassInRadius(Player, ClassName)
-		local RootPart = Character.Root(Player)
+	function ZoneService.GetInstanceClassInRadius(Player, ClassName, TargetPosition)
+		local RootPart = Character.RootPart(Player)
 
 		local Size = Hitbox.GetSize(Player)
-		local Position = Hitbox.GetPosition(Player)
+		local Position = TargetPosition or Hitbox.GetPosition(Player)
 
 		ClassName = ClassName or "<<ROOT>>"
 
@@ -51,8 +47,8 @@ return function(InfinityECS)
 			local Instances = {}
 			local TargetObjects = workspace:GetPartBoundsInRadius(
 				Position,
-				Size,
-				Params.Build()
+				Size.Y,
+				Params.Build(OverlapParams)
 			)
 
 			for _, Object in TargetObjects do

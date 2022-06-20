@@ -7,7 +7,7 @@ return function(InfinityECS)
 	local ThreadService = InfinityECS.Service.new({ Name = script.Name })
 	local _sync, _desync = task.synchronize, task.desynchronize
 
-	function ThreadService:Sync()
+	function ThreadService.Sync()
 		if not _sync then 
 			return
 		end
@@ -15,7 +15,7 @@ return function(InfinityECS)
 		return _sync() 
 	end
 
-	function ThreadService:Desync()
+	function ThreadService.Desync()
 		if not _desync then
 			return
 		end

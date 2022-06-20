@@ -5,7 +5,6 @@
 -- // Services
 local RunService = game:GetService("RunService")
 
-
 -- // Modules
 local AntiCheatFolder = script.Parent.Parent
 
@@ -18,6 +17,7 @@ InfinityECS.Janitor = require(AntiCheatFolder.Submodules.LuaModules.Janitor)
 InfinityECS.Mutex = require(AntiCheatFolder.Submodules.LuaModules.Mutex)
 InfinityECS.Promise = require(AntiCheatFolder.Submodules.LuaModules.Promise)
 InfinityECS.Signal = require(AntiCheatFolder.Submodules.LuaModules.Signal)
+InfinityECS.Timer = require(AntiCheatFolder.Submodules.LuaModules.Timer)
 
 InfinityECS._Settings = require(AntiCheatFolder.Settings)
 
@@ -33,7 +33,7 @@ InfinityECS.FileSystem.LoadChildrenInto(AntiCheatFolder.Modules.Systems, Infinit
 -- // Patch
 if InfinityECS.IsParallelEnabled then
 	InfinityECS.UpdateConnection:Disconnect()
-	InfinityECS.UpdateConnection = RunService.Stepped:ConnectParallel(function(DeltaTime)
+	InfinityECS.UpdateConnection = RunService.Heartbeat:ConnectParallel(function(DeltaTime)
 		InfinityECS:Update(DeltaTime)
 	end)
 end

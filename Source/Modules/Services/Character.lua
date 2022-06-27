@@ -73,7 +73,7 @@ return function(InfinityECS)
  
 		return Target
 	end
-	
+
 	function CharacterService.Humanoid(Player, ...)
 		if not Player.Character then
 			return
@@ -90,7 +90,20 @@ return function(InfinityECS)
 		return CharacterService.GetComponent(Player.Character, "HumanoidRootPart", ...)
 	end
 
-	ConnectionsService:BindToPlayerAdded(function(Player)
+	function CharacterService.Find(Player, Path)
+		local PathTable = string.split(Path, ".")
+		local Object = Player.Character
+
+		if Object then
+			for _, Child in PathTable do
+				Object = Object[Child]
+			end
+
+			return Object
+		end
+	end
+
+	ConnectionsService.BindToPlayerAdded(function(Player)
 		local HumanoidStateChangedSignal
 
 		CharacterService.PlayerJanitors[Player] = InfinityECS.Janitor.new()
@@ -136,7 +149,7 @@ return function(InfinityECS)
 		end))
 	end)
 
-	ConnectionsService:BindToPlayerRemoving(function(Player)
+	ConnectionsService.BindToPlayerRemoving(function(Player)
 		CharacterService.PlayerJanitors[Player]:Clean()
 	end)
 end

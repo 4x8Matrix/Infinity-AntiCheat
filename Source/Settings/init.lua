@@ -1,6 +1,7 @@
 local Settings = { }
 
 Settings.DebugMode = true
+Settings.AdorneeTime = 10
 Settings.MaxAngleRagdoll = 40
 Settings.HumanoidStateMargin = 5
 

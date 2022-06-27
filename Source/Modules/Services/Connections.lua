@@ -10,7 +10,7 @@ return function(InfinityECS)
 	local ConnectionsService = InfinityECS.Service.new({ Name = script.Name })
 
 	-- // Functions
-	function ConnectionsService:BindToPlayerAdded(Callback)
+	function ConnectionsService.BindToPlayerAdded(Callback)
 		for _, Player in Players:GetPlayers() do
 			task.spawn(Callback, Player)
 		end
@@ -18,7 +18,7 @@ return function(InfinityECS)
 		return Players.PlayerAdded:Connect(Callback)
 	end
 
-	function ConnectionsService:BindToPlayerRemoving(Callback)
+	function ConnectionsService.BindToPlayerRemoving(Callback)
 		return Players.PlayerRemoving:Connect(Callback)
 	end
 end

@@ -108,8 +108,8 @@ return function(InfinityECS)
 	end
 
 	function PlayerSystem.OnInitialised()
-		Connections:BindToPlayerAdded(PlayerSystem.InitPlayer)
-		Connections:BindToPlayerRemoving(PlayerSystem.RemovePlayer)
+		Connections.BindToPlayerAdded(PlayerSystem.InitPlayer)
+		Connections.BindToPlayerRemoving(PlayerSystem.RemovePlayer)
 	end
 
 	-- // Binds

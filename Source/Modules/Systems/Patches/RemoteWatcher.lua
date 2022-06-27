@@ -80,5 +80,5 @@ return function(InfinityECS)
 
 	-- // Binds
 	InfinityECS.World:AddSystems(RemoteWatcher)
-	Connections:BindToPlayerRemoving(RemoteWatcher.OnPlayerRemoving)
+	Connections.BindToPlayerRemoving(RemoteWatcher.OnPlayerRemoving)
 end

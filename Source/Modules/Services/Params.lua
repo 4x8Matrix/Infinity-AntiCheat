@@ -42,7 +42,6 @@ return function(InfinityECS)
 
 		-- We can't set `FilterDescendantsInstances` in parallel.
 
-		print("Create new Params!")
 		Thread.Sync()
 
 		Params = Params.new()

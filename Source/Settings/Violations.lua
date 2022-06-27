@@ -8,6 +8,7 @@ return {
 
 	CharacterRespawnViolation = { "Character Respawn Violation", 4 },
 	CharacterToolInjectionViolation = { "Character Tool Injection", 3 },
+	CharacterToolPositionViolation = { "Character Tool Position Violation", 3 },
 
 	CharacterModificationViolation = { "Character Modification Violation", 3 }
 }

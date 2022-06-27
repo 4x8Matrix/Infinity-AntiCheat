@@ -38,7 +38,7 @@ return function(InfinityECS)
 			false
 		)
 
-		Connections:BindToPlayerAdded(function(Player)
+		Connections.BindToPlayerAdded(function(Player)
 			local CharacterJanitor
 			
 			Player.CharacterAdded:Connect(function(Character)
